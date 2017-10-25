@@ -23,7 +23,8 @@ $(document).ready(function () {
 	function showCountriesList(resp) {
 		$countryList.empty();
 		resp.forEach(function(item) {
-			$('<li>').text(item.name).appendTo($countryList);
+			var info = item.name + ', ' + item.capital;
+			$('<li>').text(info).appendTo($countryList);
 		});
 	}
 })
