@@ -38,8 +38,7 @@ $(document).ready(function () {
 	}
 */
 	function showCountriesList(resp) {
-		//$countryList.empty();
-		//console.log(resp);
+		console.log(resp);
 		clearContainer();
 		list = resp;
 		resp.forEach(function(item) {
@@ -66,16 +65,26 @@ $(document).ready(function () {
 		function createInfo() {
 	
 			$box = $('<div>').attr('class', 'box');
+			$boxNav = $('<div>').attr('class', 'boxNav');
 			$flag = $('<img>').attr('class', 'flag');
+			$flagBox = $('<div>').attr('class', 'flagBox');
+			$nameBox = $('<div>').attr('class', 'nameBox');
+
 			$boxName = $('<h1>').attr('class', 'country-header').text(self.name);
 			$headerInner = $('<h2>').text('Background Information');
-			$inner = $('<div>');
-			$features = $('<ul>');
+			$inner = $('<div>').attr('class', 'inner');
+			$features = $('<ul>').attr('class', 'features');
 
-			$flag.appendTo($box);
-			$boxName.appendTo($box);
+			$flag.appendTo($flagBox);
+			$flagBox.appendTo($boxNav);
+			$boxName.appendTo($nameBox);
+			$nameBox.appendTo($boxNav);
+			
 			$inner.append($headerInner);
 			$inner.append($features);
+			
+			$boxNav.appendTo($box);
+			
 			$box.append($inner);
 			$box.appendTo('.container');
 
@@ -137,4 +146,4 @@ $(document).ready(function () {
 	//var test = new Info('Poland');
 	//console.log(test.name);
 	//console.log(test.lang);
-})
+});
