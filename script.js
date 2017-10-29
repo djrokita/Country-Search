@@ -46,6 +46,8 @@ $(document).ready(function () {
 			var boxInfo = new Info(item);
 			boxInfo.$element;
 			boxInfo.data;
+		//Moja proba
+
 		});
 	}
 
@@ -128,11 +130,13 @@ $(document).ready(function () {
 		}
 
 		function fillData() {
+			var formatArea = formatNumbers(self.area);
+			var formatPopulation = formatNumbers(self.population);
 			$flag.attr('src', self.flag);
 			console.log($flag);
 			$capital.text('Capital: ' + self.capital);
-			$area.text('Land area: ' + self.area + ' km').append($('<sup>').text('2'));
-			$population.text('Population: ' + self.population);
+			$area.text('Land area: ' + formatArea + ' km').append($('<sup>').text('2'));
+			$population.text('Population: ' + formatPopulation);
 			$languages.text('Language(s): ' + self.lang);
 			$currency.text('Currency: ' + self.currency);
 		}
@@ -143,6 +147,77 @@ $(document).ready(function () {
 		$('.container').empty();
 	}
 
+var liczba = '1234567';
+
+function formatNumbers(num) {
+	var liczba = num + '';
+	//if (liczba.length < 3) console.log(liczba);
+	if (liczba.length < 7) {
+		liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
+		console.log(liczba);
+		return liczba
+	}
+	else if (liczba.length < 10) {
+		liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
+		liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
+		console.log(liczba);
+	}	
+	else if (liczba.length < 13) {
+		liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
+		liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
+		liczba = liczba.slice(0,-11) + ' ' + liczba.slice(-11);
+		console.log(liczba);
+	}	
+	else if (liczba.length < 16) {
+		liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
+		liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
+		liczba = liczba.slice(0,-11) + ' ' + liczba.slice(-11);
+		liczba = liczba.slice(0,-15) + ' ' + liczba.slice(-15);	
+		console.log(liczba);
+	}
+	return liczba
+}
+
+/*
+function formatNumbers (num) {
+	var valueString = num + '';
+	//console.log(typeof valueString);
+	switch (valueString) {
+		case valueString.length < 7:
+			valueString = valueString.slice(0,-3) + ' ' + valueString.slice(-3);
+			return valueString;
+		case valueString.length < 10:
+			valueString = valueString.slice(0,-7) + ' ' + valueString.slice(-7);
+			return valueString;
+		case valueString.length < 13:
+			valueString = valueString.slice(0,-11) + ' ' + valueString.slice(-11);
+			return valueString;
+		case valueString.length < 16:
+			valueString = valueString.slice(0,-15) + ' ' + valueString.slice(-15);
+			return valueString;
+	}
+	//return valueString;
+}*/
+
+console.log(formatNumbers(1234));
+
+
+/*
+var nowaLiczba = '';
+var licz = 0;
+console.log(liczba);
+for (var i = liczba.length; i >= 0; i--) {
+	console.log(liczba[i]);
+	licz++;
+	if (licz == 3) {
+		nowaLiczba += ',';
+		licz = 0;
+	}
+	nowaLiczba += i;
+}
+
+console.log(nowaLiczba);
+*/
 
 	//var test = new Info('Poland');
 	//console.log(test.name);
