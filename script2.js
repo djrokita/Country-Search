@@ -113,7 +113,7 @@ $(document).ready(function () {
 			input.languages.forEach(function(item) {
 				kurwa += item.name + ", ";
 			})
-			console.log(kurwa);
+			if (kurwa.slice(-2) == ", ") kurwa = kurwa.slice(0, -2);
 			return kurwa;
 		}
 
@@ -122,6 +122,7 @@ $(document).ready(function () {
 			input.currencies.forEach(function(item) {
 				kurwa += item.name + ", ";
 			})
+			if (kurwa.slice(-2) == ", ") kurwa = kurwa.slice(0, -2);
 			console.log(kurwa);
 			return kurwa;
 		}
@@ -130,7 +131,7 @@ $(document).ready(function () {
 			$flag.attr('src', self.flag);
 			console.log($flag);
 			$capital.text('Capital: ' + self.capital);
-			$area.text('Land area: ' + self.area);
+			$area.text('Land area: ' + self.area + ' km').append($('<sup>').text('2'));
 			$population.text('Population: ' + self.population);
 			$languages.text('Language(s): ' + self.lang);
 			$currency.text('Currency: ' + self.currency);
