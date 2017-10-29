@@ -7,11 +7,9 @@ $(document).ready(function () {
 
 	$btn.click(searchCountries);
 
-	var countryPopulation = 0;
-
 	function searchCountries() {
 		var $countryName = $input.val();
-		
+	
 		if(!$countryName.length) $countryName = 'Poland';
 
 		$.ajax({
@@ -19,41 +17,19 @@ $(document).ready(function () {
 			method: 'get',
 			success: showCountriesList
 		});
-
 	}
 
-	var list = [];
-/*
 	function showCountriesList(resp) {
-		$countryList.empty();
-		list = resp;
-		resp.forEach(function(item) {
-			var info = item.name + ', ' + item.capital;
-			/*var lang = item.languages.forEach(function(n) {
-				lang += n.name + ', '; 
-			})
-			$('<li>').text(info).appendTo($countryList);
-			console.log(item.languages[0].name);	 
-		});
-	}
-*/
-	function showCountriesList(resp) {
-		console.log(resp);
 		clearContainer();
-		list = resp;
 		resp.forEach(function(item) {
-			//var name = item.name;
 			var boxInfo = new Info(item);
 			boxInfo.$element;
 			boxInfo.data;
-		//Moja proba
-
 		});
 	}
 
 	function Info(input) {
 		var self = this;
-		this.object = input;
 		this.name = input.name;
 		this.flag = input.flag;
 		this.capital = input.capital;
@@ -94,15 +70,12 @@ $(document).ready(function () {
 		}
 
 		function createInformationList() {
-			//$headCountry = $('<li>').attr('class', 'headCountry').text('Head of State: ');
 			$capital = $('<li>').attr('class', 'capital');
 			$area = $('<li>').attr('class', 'area');
 			$population = $('<li>').attr('class', 'population'); 
 			$languages = $('<li>').attr('class', 'lang');
 			$currency = $('<li>').attr('class', 'currency').text('Currency: ');
 			
-
-			//$headCountry.appendTo($features);
 			$capital.appendTo($features);
 			$area.appendTo($features);
 			$population.appendTo($features);
@@ -111,22 +84,22 @@ $(document).ready(function () {
 		}
 
 		function getLangName() {
-			var kurwa = "";	
+			var langName = "";	
 			input.languages.forEach(function(item) {
-				kurwa += item.name + ", ";
+				langName += item.name + ", ";
 			})
-			if (kurwa.slice(-2) == ", ") kurwa = kurwa.slice(0, -2);
-			return kurwa;
+			if (langName.slice(-2) == ", ") langName = langName.slice(0, -2);
+			return langName;
 		}
 
 		function getCurrencyName() {
-			var kurwa = "";	
+			var currencies = "";	
 			input.currencies.forEach(function(item) {
-				kurwa += item.name + ", ";
+				currencies += item.name + ", ";
 			})
-			if (kurwa.slice(-2) == ", ") kurwa = kurwa.slice(0, -2);
-			console.log(kurwa);
-			return kurwa;
+			if (currencies.slice(-2) == ", ") currencies = currencies.slice(0, -2);
+			console.log(currencies);
+			return currencies;
 		}
 
 		function fillData() {
@@ -147,79 +120,31 @@ $(document).ready(function () {
 		$('.container').empty();
 	}
 
-var liczba = '1234567';
-
-function formatNumbers(num) {
-	var liczba = num + '';
-	//if (liczba.length < 3) console.log(liczba);
-	if (liczba.length < 7) {
-		liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
-		console.log(liczba);
+	function formatNumbers(num) {
+		var liczba = num + '';
+		if (liczba.length < 7) {
+			liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
+			console.log(liczba);
+			return liczba
+		}
+		else if (liczba.length < 10) {
+			liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
+			liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
+			console.log(liczba);
+		}	
+		else if (liczba.length < 13) {
+			liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
+			liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
+			liczba = liczba.slice(0,-11) + ' ' + liczba.slice(-11);
+			console.log(liczba);
+		}	
+		else if (liczba.length < 16) {
+			liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
+			liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
+			liczba = liczba.slice(0,-11) + ' ' + liczba.slice(-11);
+			liczba = liczba.slice(0,-15) + ' ' + liczba.slice(-15);	
+			console.log(liczba);
+		}
 		return liczba
 	}
-	else if (liczba.length < 10) {
-		liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
-		liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
-		console.log(liczba);
-	}	
-	else if (liczba.length < 13) {
-		liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
-		liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
-		liczba = liczba.slice(0,-11) + ' ' + liczba.slice(-11);
-		console.log(liczba);
-	}	
-	else if (liczba.length < 16) {
-		liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
-		liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
-		liczba = liczba.slice(0,-11) + ' ' + liczba.slice(-11);
-		liczba = liczba.slice(0,-15) + ' ' + liczba.slice(-15);	
-		console.log(liczba);
-	}
-	return liczba
-}
-
-/*
-function formatNumbers (num) {
-	var valueString = num + '';
-	//console.log(typeof valueString);
-	switch (valueString) {
-		case valueString.length < 7:
-			valueString = valueString.slice(0,-3) + ' ' + valueString.slice(-3);
-			return valueString;
-		case valueString.length < 10:
-			valueString = valueString.slice(0,-7) + ' ' + valueString.slice(-7);
-			return valueString;
-		case valueString.length < 13:
-			valueString = valueString.slice(0,-11) + ' ' + valueString.slice(-11);
-			return valueString;
-		case valueString.length < 16:
-			valueString = valueString.slice(0,-15) + ' ' + valueString.slice(-15);
-			return valueString;
-	}
-	//return valueString;
-}*/
-
-console.log(formatNumbers(1234));
-
-
-/*
-var nowaLiczba = '';
-var licz = 0;
-console.log(liczba);
-for (var i = liczba.length; i >= 0; i--) {
-	console.log(liczba[i]);
-	licz++;
-	if (licz == 3) {
-		nowaLiczba += ',';
-		licz = 0;
-	}
-	nowaLiczba += i;
-}
-
-console.log(nowaLiczba);
-*/
-
-	//var test = new Info('Poland');
-	//console.log(test.name);
-	//console.log(test.lang);
 });
