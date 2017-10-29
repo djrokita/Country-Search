@@ -98,7 +98,6 @@ $(document).ready(function () {
 				currencies += item.name + ", ";
 			})
 			if (currencies.slice(-2) == ", ") currencies = currencies.slice(0, -2);
-			console.log(currencies);
 			return currencies;
 		}
 
@@ -106,7 +105,6 @@ $(document).ready(function () {
 			var formatArea = formatNumbers(self.area);
 			var formatPopulation = formatNumbers(self.population);
 			$flag.attr('src', self.flag);
-			console.log($flag);
 			$capital.text('Capital: ' + self.capital);
 			$area.text('Land area: ' + formatArea + ' km').append($('<sup>').text('2'));
 			$population.text('Population: ' + formatPopulation);
@@ -124,26 +122,22 @@ $(document).ready(function () {
 		var liczba = num + '';
 		if (liczba.length < 7) {
 			liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
-			console.log(liczba);
 			return liczba
 		}
 		else if (liczba.length < 10) {
 			liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
 			liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
-			console.log(liczba);
 		}	
 		else if (liczba.length < 13) {
 			liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
 			liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
 			liczba = liczba.slice(0,-11) + ' ' + liczba.slice(-11);
-			console.log(liczba);
 		}	
 		else if (liczba.length < 16) {
 			liczba = liczba.slice(0,-3) + ' ' + liczba.slice(-3);
 			liczba = liczba.slice(0,-7) + ' ' + liczba.slice(-7);
 			liczba = liczba.slice(0,-11) + ' ' + liczba.slice(-11);
 			liczba = liczba.slice(0,-15) + ' ' + liczba.slice(-15);	
-			console.log(liczba);
 		}
 		return liczba
 	}
