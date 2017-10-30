@@ -35,8 +35,8 @@ $(document).ready(function () {
 		this.capital = input.capital;
 		this.area = input.area;
 		this.population = input.population;
-		this.lang = getLangName(input);
-		this.currency = getCurrencyName(input);
+		this.lang = getAllNames(input);
+		this.currency = getAllNames(input);
 		this.$element = createInfo();
 		//this.data = fillData();
 
@@ -103,13 +103,13 @@ $(document).ready(function () {
 			$currency.appendTo(features);
 		}
 }	
-		function getLangName(num) {
-			var langName = "";	
+		function getAllNames(num) {
+			var allNames = "";	
 			num.languages.forEach(function(item) {
-				langName += item.name + ", ";
+				allNames += item.name + ", ";
 			})
-			if (langName.slice(-2) == ", ") langName = langName.slice(0, -2);
-			return langName;
+			if (allNames.slice(-2) == ", ") allNames = allNames.slice(0, -2);
+			return allNames;
 		}
 
 		function getCurrencyName(num) {
