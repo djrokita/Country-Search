@@ -13,8 +13,6 @@ body {
 
 main {
 	max-width: 600px;
-	/*padding-top: 5%;
-	padding-bottom: 5%;*/
 	padding-left: 20px;
 	padding-right: 20px;
 	margin-left: auto;
@@ -26,8 +24,6 @@ main h1 {
 	padding-top: 5%;
 	padding-bottom: 5%;
 	font-size: 3rem;
-
-	/*background: rgba(0, 0, 0, .2);*/
 }
 
 .group-form {
@@ -38,14 +34,12 @@ main h1 {
 
 #search {
 	font-family: inherit;
-	/*flex-grow: 1;*/
 	width: 50%;
 	font-size: 18px;
 	font-weight: bold;
 	padding: 9px 20px;
 	border: none;
 	border-radius: 0 5px 5px 0;
-	/*position: absolute;*/
 	background: #74ba6d;
 }
 
@@ -68,10 +62,6 @@ main h1 {
 
 }
 
-/*.container h2 {
-	text-align: left;
-}
-*/
 .box {
 	margin: 20px 0;
 	padding: 20px 20px;
@@ -100,9 +90,6 @@ main h1 {
 .nameBox {
 	padding-left: 5%;
 	width: 100%;
-	/*display: flex;
-	justify-content: center;
-	/*flex-grow: 1;*/
 }
 
 .nameBox h1 {
