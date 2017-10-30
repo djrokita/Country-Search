@@ -24,7 +24,7 @@ $(document).ready(function () {
 		resp.forEach(function(item) {
 			var boxInfo = new Info(item);
 			boxInfo.$element;
-			boxInfo.data;
+	//		boxInfo.data;
 		});
 	}
 
@@ -35,25 +35,25 @@ $(document).ready(function () {
 		this.capital = input.capital;
 		this.area = input.area;
 		this.population = input.population;
-		this.lang = getLangName();
-		this.currency = getCurrencyName();
+		this.lang = getLangName(input);
+		this.currency = getCurrencyName(input);
 		this.$element = createInfo();
-		this.data = fillData();
+		//this.data = fillData();
 
 		function createInfo() {
 	
-			$box = $('<div>').attr('class', 'box');
-			$boxNav = $('<div>').attr('class', 'boxNav');
-			$flag = $('<img>').attr('class', 'flag');
-			$flagBox = $('<div>').attr('class', 'flagBox');
-			$nameBox = $('<div>').attr('class', 'nameBox');
+			var $box = $('<div>').attr('class', 'box');
+			var $boxNav = $('<div>').attr('class', 'boxNav');
+			//$flag = $('<img>').attr('class', 'flag');
+			var $flagBox = $('<div>').attr('class', 'flagBox');
+			var $nameBox = $('<div>').attr('class', 'nameBox');
 
-			$boxName = $('<h1>').attr('class', 'country-header').text(self.name);
-			$headerInner = $('<h2>').text('Background Information');
-			$inner = $('<div>').attr('class', 'inner');
-			$features = $('<ul>').attr('class', 'features');
+			var $boxName = $('<h1>').attr('class', 'country-header').text(self.name);
+			var $headerInner = $('<h2>').text('Background Information');
+			var $inner = $('<div>').attr('class', 'inner');
+			var $features = $('<ul>').attr('class', 'features');
 
-			$flag.appendTo($flagBox);
+			//$flag.appendTo($flagBox);
 			$flagBox.appendTo($boxNav);
 			$boxName.appendTo($nameBox);
 			$nameBox.appendTo($boxNav);
@@ -66,10 +66,11 @@ $(document).ready(function () {
 			$box.append($inner);
 			$box.appendTo('.container');
 
-			createInformationList();
-		}
+			//createInformationList();
+			fillData($flagBox, $features);
+		}	
 
-		function createInformationList() {
+/*		function createInformationList() {
 			$capital = $('<li>').attr('class', 'capital');
 			$area = $('<li>').attr('class', 'area');
 			$population = $('<li>').attr('class', 'population'); 
@@ -82,37 +83,44 @@ $(document).ready(function () {
 			$languages.appendTo($features);
 			$currency.appendTo($features);
 		}
-
-		function getLangName() {
+*/
+		function fillData(flag, features) {
+			var formatArea = formatNumbers(self.area);
+			var formatPopulation = formatNumbers(self.population);
+			
+			var $flag = $('<img>').attr('src', self.flag);
+			var $capital = $('<li>').text('Capital: ' + self.capital);
+			var $area = $('<li>').text('Land area: ' + formatArea + ' km').append($('<sup>').text('2'));
+			var $population = $('<li>').text('Population: ' + formatPopulation); 
+			var $languages = $('<li>').text('Language(s): ' + self.lang);
+			var $currency = $('<li>').text('Currency: ' + self.currency);
+			
+			$flag.appendTo(flag);
+			$capital.appendTo(features);
+			$area.appendTo(features);
+			$population.appendTo(features);
+			$languages.appendTo(features);
+			$currency.appendTo(features);
+		}
+}	
+		function getLangName(num) {
 			var langName = "";	
-			input.languages.forEach(function(item) {
+			num.languages.forEach(function(item) {
 				langName += item.name + ", ";
 			})
 			if (langName.slice(-2) == ", ") langName = langName.slice(0, -2);
 			return langName;
 		}
 
-		function getCurrencyName() {
+		function getCurrencyName(num) {
 			var currencies = "";	
-			input.currencies.forEach(function(item) {
+			num.currencies.forEach(function(item) {
 				currencies += item.name + ", ";
 			})
 			if (currencies.slice(-2) == ", ") currencies = currencies.slice(0, -2);
 			return currencies;
 		}
 
-		function fillData() {
-			var formatArea = formatNumbers(self.area);
-			var formatPopulation = formatNumbers(self.population);
-			$flag.attr('src', self.flag);
-			$capital.text('Capital: ' + self.capital);
-			$area.text('Land area: ' + formatArea + ' km').append($('<sup>').text('2'));
-			$population.text('Population: ' + formatPopulation);
-			$languages.text('Language(s): ' + self.lang);
-			$currency.text('Currency: ' + self.currency);
-		}
-	
-	}
 
 	function clearContainer () {
 		$('.container').empty();
