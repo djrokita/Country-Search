@@ -1,32 +1,5 @@
 $(document).ready(function() {
 
-  var url = 'https://restcountries.eu/rest/v2/name/';
-  var $countryList = $('#countries');
-  var $btn = $('#search');
-  var $input = $('#country-name');
-
-  $btn.click(searchCountries);
-
-  function searchCountries() {
-    var $countryName = $input.val();
-
-    if (!$countryName.length) $countryName = 'Poland';
-
-    $.ajax({
-      url: url + $countryName,
-      method: 'get',
-      success: showCountriesList
-    });
-  }
-
-  function showCountriesList(resp) {
-    clearContainer();
-    resp.forEach(function(item) {
-      var boxInfo = new Info(item);
-      boxInfo.$element;
-    });
-  }
-
   function Info(input) {
     var self = this;
     this.name = input.name;
@@ -88,6 +61,34 @@ $(document).ready(function() {
     }
   }
 
+  var url = 'https://restcountries.eu/rest/v2/name/';
+  var $countryList = $('#countries');
+  var $btn = $('#search');
+  var $input = $('#country-name');
+
+  $btn.click(searchCountries);
+
+  function searchCountries() {
+    var $countryName = $input.val();
+
+    if (!$countryName.length) $countryName = 'Poland';
+
+    $.ajax({
+      url: url + $countryName,
+      method: 'get',
+      success: showCountriesList
+    });
+  }
+
+  function showCountriesList(resp) {
+    clearContainer();
+    resp.forEach(function(item) {
+      var boxInfo = new Info(item);
+      boxInfo.$element;
+    });
+  }
+
+
   function getAllNames(num) {
     var allNames = "";
     num.languages.forEach(function(item) {
@@ -102,10 +103,9 @@ $(document).ready(function() {
   }
 
   function formatNumbers(num) {
-    var stringNumber = num + '';
+    var stringNumber = '' + num;
     if (stringNumber.length < 7) {
       stringNumber = stringNumber.slice(0, -3) + ' ' + stringNumber.slice(-3);
-      return stringNumber
     } else if (stringNumber.length < 10) {
       stringNumber = stringNumber.slice(0, -3) + ' ' + stringNumber.slice(-3);
       stringNumber = stringNumber.slice(0, -7) + ' ' + stringNumber.slice(-7);
@@ -121,4 +121,5 @@ $(document).ready(function() {
     }
     return stringNumber
   }
-});
+  
+}); 
