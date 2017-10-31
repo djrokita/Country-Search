@@ -2,6 +2,7 @@
 
 body {
 	background-image: url('https://static.pexels.com/photos/269850/pexels-photo-269850.jpeg');
+	background-attachment: fixed;
 	background-size: cover;
 	margin: 0;
 	font-family: 'Open Sans', sans-serif;
