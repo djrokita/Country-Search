@@ -100,13 +100,27 @@ $(document).ready(function() {
       return allNames;
     }
 
-  */
+//Pierwsze użycie .map i .join  
   function getAllNames(num) {
     var allNamesArray = [];
     num.map(function(item) {
       allNamesArray.push(item.name);
     });
     var allNames = allNamesArray.join(', ');
+    return allNames;
+  }
+*/
+  function getAllNames(num) {
+    var allNames = '';
+
+    function getString(element) {
+      allNames = element.join(', ');
+    }
+
+    getString(num.map(function(item) {
+      return item.name;
+    }));
+
     return allNames;
   }
 
